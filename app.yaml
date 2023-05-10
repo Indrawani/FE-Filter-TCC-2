@@ -1,0 +1,20 @@
+# Konfigurasi untuk runtime yang digunakan oleh aplikasi, dalam hal ini adalah runtime kustom.
+runtime: custom
+
+# Menentukan lingkungan runtime yang akan digunakan, yaitu Google App Engine Flexible Environment.
+env: flex
+
+# Nama layanan yang akan digunakan dalam App Engine.
+service: project-umkm-2
+
+# Menentukan bagaimana permintaan HTTP akan ditangani. 
+# Pada konfigurasi ini terdapat 2 aturan penanganan permintaan, yaitu:
+handlers:
+   # Aturan untuk menangani permintaan yang tidak sesuai dengan aturan sebelumnya, 
+  # yang akan diarahkan ke script auto.
+  - url: /.*
+    script: auto
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 5

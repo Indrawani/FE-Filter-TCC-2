@@ -1,0 +1,28 @@
+steps:
+  # Build the Docker image
+  # Langkah pertama melakukan build Docker image menggunakan image docker "gcr.io/cloud-builders/docker"
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/project-umkm-2:1.0', '.']
+
+  # Push the Docker image to Google Container Registry
+  # Langkah kedua melakukan push Docker image yang telah dibuild ke Google Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/$PROJECT_ID/project-umkm-2:1.0']
+
+  # Deploy the Docker image to App Engine
+  # Langkah ketiga melakukan deploy Docker image ke Google App Engine
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      [
+        'app',
+        'deploy',
+        '--image-url=gcr.io/$PROJECT_ID/project-umkm-2:1.0',
+        '--project=$PROJECT_ID',
+        '--quiet',
+        '--promote'
+      ]
+
+  # --image-url menunjukkan URL image Docker yang akan di-deploy ke App Engine.
+  # --project menunjukkan ID dari project yang akan digunakan.
+  # --quiet menunjukkan untuk tidak menampilkan output yang berlebihan selama proses deploy.
+  # --promote menunjukkan untuk langsung mempromosikan versi aplikasi yang baru di deploy sebagai versi utama di App Engine.
