@@ -5,7 +5,7 @@ runtime: custom
 env: flex
 
 # Nama layanan yang akan digunakan dalam App Engine.
-service: project-umkm-2
+service: project-deploy
 
 # Menentukan bagaimana permintaan HTTP akan ditangani. 
 # Pada konfigurasi ini terdapat 2 aturan penanganan permintaan, yaitu:
